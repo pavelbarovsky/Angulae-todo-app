@@ -1,0 +1,23 @@
+
+<div class="container">
+  <h1>Заметки</h1>
+  <div class="form-group">
+    <div class="row">
+      <div class="input-field col s11">
+        <i class="material-icons prefix">mode_edit</i>
+        <input type="text" class="materialize-textarea" placeholder="введите заметку" [(ngModel)]="newTodo.title">
+      </div>
+      <a class="btn-floating btn-large waves-effect waves-light red" (click)="addTodo()"><i class="material-icons">add</i></a>
+    </div>
+  </div>
+  <ul class="collection">
+    <li class="collection-item" *ngFor="let todo of todos$ | async" [ngClass]="{'completed': todo.completed}">
+      <label>
+        <input type="checkbox" class="filled-in" [checked]="todo.completed" (change)="toggleTodo(todo)">
+        <span [ngClass]="{'completed': todo.completed}">{{ todo.title }}</span>
+      </label>
+      <a class="waves-effect waves-teal btn-flat" (click)="removeTodo(todo.id)"><i class="material-icons">backspace</i></a>
+    </li>
+  </ul>
+</div>
+
